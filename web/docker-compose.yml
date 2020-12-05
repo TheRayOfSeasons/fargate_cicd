@@ -19,7 +19,7 @@ services:
 
   nginx:
     build:
-      context: ../nginx
+      context: ./nginx
     volumes:
       - static_data:/public/static
     ports:

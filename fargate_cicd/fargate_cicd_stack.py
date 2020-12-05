@@ -86,7 +86,7 @@ class FargateCicdStack(core.Stack):
 
         container = task_definition.add_container(
             'web',
-            image=ecs.ContainerImage.from_asset('./django_backend'),
+            image=ecs.ContainerImage.from_asset('./web'),
             memory_limit_mib=256
         )
         port_mapping = ecs.PortMapping(

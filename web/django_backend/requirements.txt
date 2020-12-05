@@ -1,0 +1,6 @@
+boto3==1.16.23
+# djangorestframework==3.12.2
+# djangorestframework-xml==2.0.0
+# djangorestframework-yaml==2.0.0
+requests==2.25.0
+uWSGi>=2.0.18,<2.1
