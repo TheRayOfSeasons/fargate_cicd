@@ -1,0 +1,31 @@
+# This is for production.
+
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - static_data:/public/web
+    env_file: environments/production.env
+    ports:
+      - "8000:8000"
+
+  # NOTE: Production doesn't use a postgres image
+  # since we're going to use AWS RDS.
+
+  nginx:
+    build:
+      context: ../nginx
+    volumes:
+      - static_data:/public/static
+    ports:
+      - "8080:8080"
+    depends_on:
+      - web
+
+volumes:
+  static_data:
