@@ -1,0 +1,32 @@
+# NOTE: This is for development and other sandbox deployments.
+
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      DEBUG: true
+      DATABASES_DEFAULT_ENGINE: django.db.backends.postgresql_psycopg2
+      DATABASES_DEFAULT_NAME: tito
+      DATABASES_DEFAULT_USER: tito_user
+      DATABASES_DEFAULT_PASSWORD: admin
+      DATABASES_DEFAULT_HOST: postgres
+      DATABASES_DEFAULT_PORT: 5432
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:12.0-alpine
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: tito_user
+      POSTGRES_DB: tito
+    ports:
+      - '54321:5432'
+    expose:
+      - '5432'
