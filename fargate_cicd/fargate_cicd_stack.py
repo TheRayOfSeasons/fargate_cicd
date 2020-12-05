@@ -35,7 +35,7 @@ class FargateCicdStack(core.Stack):
         router = route53.PublicHostedZone(
             self,
             'sample-route-53',
-            zone='app.therayofseasons.fargatestack'
+            zone_name='app.therayofseasons.fargatestack'
         )
         return router
 
@@ -61,8 +61,11 @@ class FargateCicdStack(core.Stack):
         )
 
         load_balanced_listener.add_target_groups(
+            'default',
             target_groups=[
                 elbv2.ApplicationTargetGroup(
+                    self,
+                    'default',
                     vpc=self.vpc,
                     protocol=elbv2.ApplicationProtocol.HTTP,
                     port=80
@@ -73,7 +76,7 @@ class FargateCicdStack(core.Stack):
         core.CfnOutput(
             self,
             'LoadBalancerDNS',
-            value=load_balancer.loadBalancerDnsName
+            value=load_balancer.load_balancer_dns_name
         )
 
         task_definition = ecs.FargateTaskDefinition(
@@ -83,15 +86,14 @@ class FargateCicdStack(core.Stack):
 
         container = task_definition.add_container(
             'web',
-            image=ecs.ContainerImage.fromAsset('../django_backend'),
+            image=ecs.ContainerImage.from_asset('./django_backend'),
             memory_limit_mib=256
         )
         port_mapping = ecs.PortMapping(
             container_port=80,
-            host_port=8080,
             protocol=ecs.Protocol.TCP
         )
-        container.add_port_mapping(port_mapping)
+        container.add_port_mappings(port_mapping)
 
         fargate_service = ecs.FargateService(
             self,
@@ -113,11 +115,12 @@ class FargateCicdStack(core.Stack):
 
         load_balanced_listener.add_targets(
             'target-fargate-service',
+            port=80,
             path_pattern='*',
             priority=2,
             health_check=health_check,
             # Drain containers for 10 seconds when stopping.
             deregistration_delay=core.Duration.seconds(10),
-            targets=[fargate_service]
+            targets=[fargate_service],
         )
         return fargate_service
