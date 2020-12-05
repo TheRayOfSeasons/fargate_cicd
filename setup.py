@@ -20,6 +20,19 @@ setuptools.setup(
 
     install_requires=[
         "aws-cdk.core==1.76.0",
+        "aws-cdk.aws-cloudformation==1.76.0",
+        "aws-cdk.aws-codebuild==1.76.0",
+        "aws-cdk.aws-codedeploy==1.76.0",
+        "aws-cdk.aws-codepipeline==1.76.0",
+        "aws-cdk.aws-codepipeline-actions==1.76.0",
+        "aws-cdk.aws-ec2==1.76.0",
+        "aws-cdk.aws-ecr==1.76.0",
+        "aws-cdk.aws_ecs==1.76.0",
+        "aws-cdk.aws_elasticloadbalancingv2==1.76.0",
+        "aws-cdk.aws-iam==1.76.0",
+        "aws-cdk.aws-rds==1.76.0",
+        "aws-cdk.aws-route53==1.76.0",
+        "aws-cdk.aws-s3==1.76.0",
     ],
 
     python_requires=">=3.6",

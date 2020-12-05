@@ -6,6 +6,6 @@ from fargate_cicd.fargate_cicd_stack import FargateCicdStack
 
 
 app = core.App()
-FargateCicdStack(app, "fargate-cicd")
+FargateCicdStack(app, 'fargate-cicd')
 
 app.synth()
