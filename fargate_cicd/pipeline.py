@@ -76,7 +76,7 @@ class Pipeline(core.Construct):
             action_name='Github_Source',
             owner=owner,
             repo=repo,
-            oauth_token=secret,
+            oauth_token=secret_token,
             output=output
         )
         return {
