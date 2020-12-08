@@ -25,6 +25,7 @@ class Pipeline(core.Construct):
         self.container_name = webapp.container_name
 
         self.pipeline = self._create_pipeline()
+        self.output()
 
     def _create_pipeline(self) -> codepipeline.Pipeline:
         """
