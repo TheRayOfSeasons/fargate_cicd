@@ -39,9 +39,9 @@ class WebApp(core.Construct):
         return ecs_patterns.ApplicationLoadBalancedFargateService(
             self,
             'Service',
-            cluster=cluster,
+            vpc=cluster.ecsCluster.vpc,
             task_image_options={
-                'image': ecs.ContainerImage.from_asset('../web')
+                'image': ecs.ContainerImage.from_asset('./web')
             }
         )
 
