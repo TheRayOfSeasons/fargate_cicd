@@ -28,6 +28,7 @@ setuptools.setup(
         "aws-cdk.aws-ec2==1.76.0",
         "aws-cdk.aws-ecr==1.76.0",
         "aws-cdk.aws_ecs==1.76.0",
+        "aws-cdk.aws_ecs_patterns==1.76.0",
         "aws-cdk.aws_elasticloadbalancingv2==1.76.0",
         "aws-cdk.aws-iam==1.76.0",
         "aws-cdk.aws-rds==1.76.0",
