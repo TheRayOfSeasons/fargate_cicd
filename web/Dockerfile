@@ -10,7 +10,7 @@ RUN apk add --update --no-cache --virtual .tmp \
     gcc libc-dev linux-headers
 
 # Psycopg2 dependencies
-RUN apk add postgresql-dev python3-dev python3-dev musl-dev
+RUN apk add postgresql-dev python3-dev musl-dev
 
 # Install python packages
 RUN pip install -r /requirements.txt
