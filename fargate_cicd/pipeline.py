@@ -80,7 +80,7 @@ class Pipeline(core.Construct):
             output=output
         )
         return {
-            'stage_name': stage_name,
+            'stageName': stage_name,
             'actions': [github_action]
         }
 
