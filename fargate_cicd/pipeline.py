@@ -97,8 +97,8 @@ class Pipeline(core.Construct):
             'Project',
             build_spec=self._create_build_spec(),
             environment={
-                'buildImage': codebuild.LinuxBuildImage.STANDARD_2_0,
-                'priveledged': True
+                'build_image': codebuild.LinuxBuildImage.STANDARD_2_0,
+                'privileged': True
             },
             environment_variables={
                 'REPOSITORY_URI': {'value': self.ecr_repo.repository_uri},
