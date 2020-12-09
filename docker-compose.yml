@@ -9,8 +9,8 @@ services:
     environment:
       DEBUG: true
       DATABASES_DEFAULT_ENGINE: django.db.backends.postgresql_psycopg2
-      DATABASES_DEFAULT_NAME: tito
-      DATABASES_DEFAULT_USER: tito_user
+      DATABASES_DEFAULT_NAME: local_database
+      DATABASES_DEFAULT_USER: postgres
       DATABASES_DEFAULT_PASSWORD: admin
       DATABASES_DEFAULT_HOST: postgres
       DATABASES_DEFAULT_PORT: 5432
@@ -24,8 +24,8 @@ services:
     image: postgres:12.0-alpine
     environment:
       POSTGRES_PASSWORD: admin
-      POSTGRES_USER: tito_user
-      POSTGRES_DB: tito
+      POSTGRES_USER: postgres
+      POSTGRES_DB: local_database
     ports:
       - '54321:5432'
     expose:
