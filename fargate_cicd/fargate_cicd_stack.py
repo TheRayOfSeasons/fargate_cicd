@@ -17,5 +17,5 @@ class FargateCicdStack(core.Stack):
 
         cluster = Cluster(self, 'Cluster')
         storage = Storage(self, 'Storage', cluster=cluster)
-        webapp = WebApp(self, 'WebApp', cluster=cluster)
+        webapp = WebApp(self, 'WebApp', cluster=cluster, storage=storage)
         pipeline = Pipeline(self, 'Pipeline', webapp=webapp)

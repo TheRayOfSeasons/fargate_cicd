@@ -4,6 +4,7 @@ from aws_cdk import aws_ecs as ecs
 from aws_cdk import aws_ecs_patterns as ecs_patterns
 
 from .cluster import Cluster
+from .storage import Storage
 
 
 class WebApp(core.Construct):
@@ -13,8 +14,10 @@ class WebApp(core.Construct):
 
     def __init__(
             self, scope: core.Construct, construct_id: str,
-            cluster: Cluster, **kwargs):
+            cluster: Cluster, storage: Storage, **kwargs):
         super().__init__(scope, construct_id)
+        self.storage = storage
+
         self.fargate_service = self._create_service(cluster)
         self.ecr_repo = self._create_ecr_repository()
         self.ecr_repo.grant_pull(
@@ -27,6 +30,8 @@ class WebApp(core.Construct):
             .default_container
             .container_name
         )
+
+        self.service.node.add_dependency(storage)
 
         self._add_auto_scaling()
         self.output()
