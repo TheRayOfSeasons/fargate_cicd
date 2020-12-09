@@ -10,7 +10,7 @@ services:
       - "8000:8000"
     volumes:
       - static_data:/public/web
-    env_file: environments/production.env
+    env_file: .env
     ports:
       - "8000:8000"
 
@@ -19,7 +19,7 @@ services:
 
   nginx:
     build:
-      context: ../nginx
+      context: ./nginx
     volumes:
       - static_data:/public/static
     ports:

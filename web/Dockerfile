@@ -2,12 +2,15 @@ FROM python:3.8-alpine
 
 ENV PATH="/install_scripts:${PATH}"
 
-COPY ./requirements.txt /requirements.txt
+COPY ./django_backend/requirements.txt /requirements.txt
 
 # C dependencies. Placed in tmp since these are only required
 # when installing our python packages.
 RUN apk add --update --no-cache --virtual .tmp \
     gcc libc-dev linux-headers
+
+# Psycopg2 dependencies
+RUN apk add postgresql-dev python3-dev python3-dev musl-dev
 
 # Install python packages
 RUN pip install -r /requirements.txt
@@ -17,9 +20,9 @@ RUN apk del .tmp
 
 # Clone files.
 RUN mkdir /app
-COPY . /app
+COPY ./django_backend /app
 WORKDIR /app
-COPY ../install_scripts /install_scripts
+COPY ./install_scripts /install_scripts
 
 # Enable public access for all users in the container
 RUN chmod +x /install_scripts/*

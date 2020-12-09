@@ -10,4 +10,4 @@ python manage.py migrate
 python manage.py collectstatic --no-input
 
 # Run Django application with uwsgi
-uwsgi --socket :8000 --master --enable-threads --module tito.wsgi
+uwsgi --socket :8000 --master --enable-threads --module django_backend.wsgi
