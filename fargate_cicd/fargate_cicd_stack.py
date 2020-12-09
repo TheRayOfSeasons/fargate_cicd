@@ -2,6 +2,7 @@ from aws_cdk import core
 
 from .cluster import Cluster
 from .pipeline import Pipeline
+from .storage import Storage
 from .webapp import WebApp
 
 
@@ -15,5 +16,6 @@ class FargateCicdStack(core.Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         cluster = Cluster(self, 'Cluster')
+        storage = Storage(self, 'Storage', cluster=cluster)
         webapp = WebApp(self, 'WebApp', cluster=cluster)
         pipeline = Pipeline(self, 'Pipeline', webapp=webapp)
